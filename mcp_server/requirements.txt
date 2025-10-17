@@ -1,0 +1,8 @@
+mcp[cli]
+httpx
+faiss-cpu
+langchain-community
+python-dotenv
+pypdf
+cloudpathlib[s3,gs,azure]
+langchain-aws

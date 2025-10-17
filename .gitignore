@@ -1,0 +1,10 @@
+mcp_server/utils/__pycache__/*
+mcp_server/vector_store/__pycache__/*
+mcp_server/__pycache__/*
+mcp_server/services/LMS/__pycache__/*
+agents/__pycache__/*
+agents/profile_searcher_agent/__pycache__/*
+server/__pycache__/*
+.vscode/
+agents/profile_matcher_agent/__pycache__/*
+agents/course_recommendation_agent/__pycache__/*

@@ -1,0 +1,6 @@
+strands-agents
+strands-agents-tools
+strands-agents-builder
+litellm
+python-dotenv
+strands-agents[a2a]

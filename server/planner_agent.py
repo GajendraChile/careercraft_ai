@@ -14,9 +14,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 load_dotenv()
-os.environ["AWS_ACCESS_KEY_ID"] = os.getenv("AWS_ACCESS_KEY_ID")
-os.environ["AWS_SECRET_ACCESS_KEY"] = os.getenv("AWS_SECRET_ACCESS_KEY")
-os.environ["AWS_REGION_NAME"] = os.getenv("AWS_REGION_NAME")
 
 profile_search_agent_url = os.getenv("PROFILE_SEARCH_AGENT_URL")
 profile_matcher_agent_url = os.getenv("PROFILE_MATCHER_AGENT_URL")
@@ -27,9 +24,7 @@ class JDAnalyserAgent:
         self.provider = A2AClientToolProvider(known_agent_urls=[profile_search_agent_url, profile_matcher_agent_url,course_recommender_agent_url])
         self.litellm_model = LiteLLMModel(
             client_args={
-                "aws_access_key_id" : os.getenv("AWS_ACCESS_KEY_ID"),
-                "aws_secret_access_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
-                "aws_region_name" : os.getenv("AWS_REGION_NAME")
+                "api_key" : os.getenv("AWS_BEARER_TOKEN_BEDROCK")
             },
             model_id=self.model_id,
             params={
@@ -108,7 +103,8 @@ class JDAnalyserAgent:
             response = completion(
                 model=self.model_id,
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.2
+                temperature=0.2,
+                api_key=os.getenv("AWS_BEARER_TOKEN_BEDROCK")
             )
             print(f"Response inside tool = {response}")
             return response

@@ -11,9 +11,7 @@ load_dotenv()
 
 model = os.getenv("MODEL_CLAUDE_SONNET")
 bucket_initials = os.getenv("BUCKET_INITIALS")
-os.environ["AWS_ACCESS_KEY_ID"] = os.getenv("AWS_ACCESS_KEY_ID")
-os.environ["AWS_SECRET_ACCESS_KEY"] = os.getenv("AWS_SECRET_ACCESS_KEY")
-os.environ["AWS_REGION_NAME"] = os.getenv("AWS_REGION_NAME")
+
 app = FastAPI()
 
 app.add_middleware(
@@ -39,7 +37,8 @@ def get_summary(json_str):
     response = completion(
                 model=model,
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.2
+                temperature=0.2,
+                api_key=os.getenv("AWS_BEARER_TOKEN_BEDROCK")
             )
     return response.choices[0].message.content
 

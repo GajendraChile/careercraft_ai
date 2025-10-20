@@ -8,9 +8,7 @@ load_dotenv()
 MODEL = os.getenv("MODEL_CLAUDE_SONNET")
 litellm_model = LiteLLMModel(
     client_args={
-        "aws_access_key_id" : os.getenv("AWS_ACCESS_KEY_ID"),
-        "aws_secret_access_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
-        "aws_region_name" : os.getenv("AWS_REGION_NAME")
+        "api_key" : os.getenv("AWS_BEARER_TOKEN_BEDROCK")
     },
     # **model_config
     model_id=MODEL,

@@ -10,7 +10,7 @@ import os
 load_dotenv()
 embedding_model = os.getenv("EMBEDDING_MODEL")
 def vector_store(file_paths):
-    embeddings = BedrockEmbeddings(model_id=embedding_model)
+    embeddings = BedrockEmbeddings(model_id=embedding_model, region_name=os.getenv("MODEL_REGION"))
     all_splits = []
     index = faiss.IndexFlatL2(len(embeddings.embed_query("hello world")))
 

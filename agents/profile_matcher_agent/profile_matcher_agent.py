@@ -7,10 +7,6 @@ import os
 load_dotenv()
 MODEL = os.getenv("MODEL_CLAUDE_SONNET")
 litellm_model = LiteLLMModel(
-    client_args={
-        "api_key" : os.getenv("AWS_BEARER_TOKEN_BEDROCK")
-    },
-    # **model_config
     model_id=MODEL,
     params={
         #"max_tokens": 1000,

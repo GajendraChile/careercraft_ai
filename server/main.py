@@ -37,8 +37,7 @@ def get_summary(json_str):
     response = completion(
                 model=model,
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.2,
-                api_key=os.getenv("AWS_BEARER_TOKEN_BEDROCK")
+                temperature=0.2
             )
     return response.choices[0].message.content
 

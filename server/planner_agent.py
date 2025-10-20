@@ -23,9 +23,6 @@ class JDAnalyserAgent:
         self.model_id = os.getenv("MODEL_CLAUDE_SONNET")
         self.provider = A2AClientToolProvider(known_agent_urls=[profile_search_agent_url, profile_matcher_agent_url,course_recommender_agent_url])
         self.litellm_model = LiteLLMModel(
-            client_args={
-                "api_key" : os.getenv("AWS_BEARER_TOKEN_BEDROCK")
-            },
             model_id=self.model_id,
             params={
                 "temperature": 0.3,
@@ -103,8 +100,7 @@ class JDAnalyserAgent:
             response = completion(
                 model=self.model_id,
                 messages=[{"role": "user", "content": prompt}],
-                temperature=0.2,
-                api_key=os.getenv("AWS_BEARER_TOKEN_BEDROCK")
+                temperature=0.2
             )
             print(f"Response inside tool = {response}")
             return response
